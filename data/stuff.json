@@ -1,0 +1,39 @@
+{
+  "rounds": [
+    {
+      "category": "Annoying things",
+      "terms": [
+        "People driving close behind you",
+        "People who eat with their mouth open",
+        "Rude shop assistants",
+        "Call centres",
+        "Slow internet",
+        "Cold callers",
+        "Stubbing your toe",
+        "Bullying",
+        "Junk mail",
+        "Parking tickets"
+      ]
+    },
+    {
+      "category": "Winter Olympic events",
+      "terms": [
+        "Ski Jumping",
+        "Figure skating",
+        "Snowboarding",
+        "Ice hockey",
+        "Luge"
+      ]
+    },
+    {
+      "category": "Simpsons characters",
+      "terms": [
+        "Maggie Simpson",
+        "Patty Bouvier",
+        "Disco Stu",
+        "Ned Flanders",
+        "Jimbo Jones"
+      ]
+    }
+  ]
+}

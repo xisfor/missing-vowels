@@ -1,0 +1,44 @@
+{
+  "rounds": [
+    {
+      "category": "Winter Olympic events",
+      "term": "Ski Jumping"
+    },
+    {
+      "category": "Winter Olympic events",
+      "term": "Figure skating"
+    },
+    {
+      "category": "Winter Olympic events",
+      "term": "Snowboarding"
+    },
+    {
+      "category": "Winter Olympic events",
+      "term": "Ice hockey"
+    },
+    {
+      "category": "Winter Olympic events",
+      "term": "Luge"
+    },
+    {
+      "category": "Simpsons characters",
+      "term": "Maggie Simpson"
+    },
+    {
+      "category": "Simpsons characters",
+      "term": "Patty Bouvier"
+    },
+    {
+      "category": "Simpsons characters",
+      "term": "Disco Stu"
+    },
+    {
+      "category": "Simpsons characters",
+      "term": "Ned Flanders"
+    },
+    {
+      "category": "Simpsons characters",
+      "term": "Jimbo Jones"
+    }
+  ]
+}

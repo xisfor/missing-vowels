@@ -1,0 +1,98 @@
+{
+  "rounds": [
+    {
+      "category":"Cartoon characters",
+      "terms": ["Abe Simpson","Aladdin","Alvin Chipmunk","Angelica Pickles","Apu Nahasapeemapetilon","Arthur","Bart Simpson","Batman","Beavis & Butt-Head","Bender","Betty Boop","Bobby Hill","Boo Boo","Brian Griffin","Bugs Bunny","C. Montgomery Burns","Charlie Brown","Chief Clancy Wiggum","Daffy Duck","Daria","Daria Morgendorffer","Darkwing Duck","Donald Duck","Dr. Doofenshmirtz","Dr. Zoidberg","Elmer Fudd","Eric Cartman","Fat Albert","Felix the Cat","Foghorn Leghorn","Fred Flintstone","George Jetson","George of the Jungle","Glenn Quagmire","Goofy","Gumby","Herbert Garrison","Homer Simpson","Hong Kong Phooey","Jessica Rabbit","Joker","Josie and the Pussycats","Krusty the Clown","Larry the Cucumber","Leanne Cartman","Lenny and Carl","Butters","Lionel Hutz","Lisa Simpson","Marge Simpson","Marvin Martian","Mickey Mouse","Mighty Mouse","Milhouse Van Houten","Moe Szyslak","Mr. Magoo","Ned Flanders","Pepe Le Pew","Peter Griffin","Phil Ken Sebben","Phillip J. Fry","Phineas Flynn","Pink Panther","Pinky & The Brain","Popeye","Porky Pig","Principal Seymore Skinner","Randy Marsh","Ren & Stimpy","Sideshow Bob","Robin","Rocky and Bullwinkle","Scooby-Doo","Shaggy Rogers","Snoopy","Space Ghost","Speed Racer","Spider-Man","SpongeBob Squarepants","Stan Marsh","Kyle Brofloski","Kenny Mcormack","Stan Smith","Sterling Malory Archer","Stewie Griffin","Superman","Sylvester","Sylvester J. Pussycat","The Grinch","The Joker","The Powerpuff Girls","The Tick","Tom & Jerry","Tom and Jerry","Top Cat","Troy McClure","Tweety Bird & Sylvester","Underdog","Venom","Wile E. Coyote","Winnie the Pooh","Wonder Woman","Woody Woodpecker","Yogi Bear","Zapp Branigan"]
+    },
+    {
+      "category": "Sit-coms",
+      "terms": [
+        "Last of the Summer’s Wine",
+        "Father Ted",
+        "The Good Life",
+        "Only Fools and Horses",
+        "To the Manor Born",
+        "Bread",
+        "Hi-De-Hi",
+        "Just Good Friends",
+        "As Time Goes By",
+        "Not Going Out",
+        "Absolutely Fabulous",
+        "Red Dwarf",
+        "‘Ello,’Ello",
+        "Open All Hours",
+        "Dad’s Army",
+        "Are You Being Served?",
+        "The Thin Blue Line",
+        "Waiting for God",
+        "Gimme, Gimme, Gimme",
+        "Duty Free",
+        "The Goodies",
+        "The Office",
+        "Some Mothers Do ‘ave ‘em.",
+        "Drop the Dead Donkey",
+        "Steptoe and Son"
+      ]
+    },
+    {
+      "category": "Top 10 Recording Artists of all time",
+      "terms": [
+        "Michael Jackson",
+        "Madonna",
+        "Elvis Presley",
+        "The Beatles",
+        "Backstreet Boys",
+        "Pink Floyd",
+        "The Rolling Stones",
+        "The Beach Boys",
+        "Frank Sinatra",
+        "ABBA"
+      ]
+    },
+    {
+      "category": "Computer Animated Movies",
+      "terms": [
+        "Toy Story",
+        "Monsters Inc.",
+        "Cars",
+        "Bee Movie",
+        "Finding Nemo",
+        "Shrek",
+        "Flushed Away",
+        "Happy Feet",
+        "Over the Hedge",
+        "Madagascar"
+      ]
+    },
+    {
+      "category": "Disney Villains",
+      "terms": [
+        "Maleficent",
+        "Jafar",
+        "Ursula",
+        "Captain Hook",
+        "Cruella DeVille",
+        "Lady Tremaine (evil step-mother)",
+        "Queen of Hearts",
+        "Judge Claude Frollo",
+        "Hades",
+        "Clayton"
+      ]
+    },
+    {
+      "category": "Adam Sandler Movies",
+      "terms": [
+        "50 First Dates",
+        "8 Crazy Nights",
+        "Little Nicky",
+        "The Wedding Singer",
+        "Waterboy",
+        "Happy Gilmore",
+        "Billy Madison",
+        "Punch Drunk Love",
+        "I Now Pronounce you Chuck and Larry",
+        "Big Daddy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "rounds": [
+    {
+      "category": "Fruit",
+      "terms": ["apple","apricot","avocado","banana","blackberry","blueberry","boysenberry","cantaloupe","cherry","clementine","coconut","date","dragonfruit","fig","grape","grapefruit","guava","honeydew","huckleberry","jujube","kiwi","kumquat","lemon","lime","mango","nectarine","orange","papaya","passon_fruit","peach","pear","pineapple","plum","pomegranate","raspberry","satsuma","star fruit","strawberry","tangerine","tomato","watermelon"]
+    },
+    {
+      "category": "American fast-food chains",
+      "terms": ["A&W Restaurants","Arby's","Baskin-Robbins","Bojangles'","Boston Market","Burger King","Captain D's","Carl's Jr.","Checkers","Chick-fil-A","Chipotle Mexican Grill","Church's Chicken","CiCi's Pizza","Culver's","Dairy Queen","Del Taco","Domino's Pizza","Dunkin' Donuts","El Pollo Loco","Fatburger","Five Guys Burgers & Fries","Hardee's","In-N-Out Burger","Jack in the Box","Jamba Juice","Jason's Deli","Jimmy John's","Kenny Rogers Roasters","KFC","Krispy Kreme","Little Caesars","Long John Silver's","McDonald's","Moe's Southwest Grill","Nathan's Famous","Panda Express","Panera Bread","Papa John's","Papa Murphy's","Pizza Hut","Popeyes Chicken","Popeyes Louisiana Kitchen","Qdoba Mexican Grill","Quiznos","Red Rooster","Roy Rogers Restaurants","Smoothie King","Sonic Drive-In","Starbucks","Steak 'n Shake","Subway","Taco Bell","Taco Bueno","Taco Cabana","Tim Hortons","Wendy's","Whataburger","White Castle","Wingstop","Zaxby's"]
+    },
+    {
+      "category": "Ice cream flavours",
+      "terms": ["Cookies N' Cream","Chocolate","Vanilla","Mint Chocolate Chip","Chocolate Chip Cookie Dough","Cookie Dough","Strawberry","Rocky Road","Mint","Coffee","Pistachio","Neopolitan","Chocolate Chip","Caramel","Peanut Butter Cup","Cherry Vanilla","Lemon","Moose Tracks","M&M's","Birthday Cake","Banana","Raspberry","Fudge Brownie","Butter Pecan","French Vanilla","Praline Pecan","Cherry","Chocolate Marshmallow","Chocolate Almond"]
+    },
+    {
+      "category": "Candy",
+      "terms": ["Almond Joy","Atomic Fireball","Baby Ruth","Blow Pops","Butterfinger","Cadbury eggs","Candy cigarettes","Candy corn","Circus peanuts","Cotton candy","Gummi Bears","Gummi Worms","Hershey Bar","Hershey's Kisses","Jawbreakers","Jelly Belly","Jolly Ranchers","Junior Mints","Kit-Kat","M&Ms","Milk Duds","Milky Way","Mr. Goodbar","Necco wafers","Nerds","Nik-L-Nips","Payday","Peeps","Pez","Pixie Stix","Pocky","Pop Rocks","Red Vines","Reese's Peanut Butter Cups","Reese's pieces","Salt water taffy","Skittles","Smarties","Snickers","Sour Patch Kids","Starburst","Sugar Daddy","Swedish Fish","Three Musketeers","Toblerone","Tootsie Roll Pops","Tootsie Rolls","Twix","Twizzlers","Wax lips","Werther's Original","York Peppermint Patties"]
+    }
+  ]
+}

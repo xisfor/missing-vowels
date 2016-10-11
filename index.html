@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Missing Vowels</title>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="/assets/xisfor-dark-square-rounded-120.png" />
+  <style type="text/css">
+  .btn, .input-lg {
+    border-radius: 2px;
+  }
+  .main {
+    margin-bottom: 50px;
+  }
+  .site-footer {
+     position: fixed;
+     left: 0px;
+     bottom: 0px;
+     width: 100%;
+     background-color: #fff;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="container main">
+    <div id="app">
+      <p class="pull-right">time: {{ time_remaining }} - score: {{ score }}<p>
+      <h1>Missing vowels</h1>
+      <p>{{ round_time_length }} seconds to identify as many words or phrases with their vowels removed.</p>
+
+      <hr />
+
+      <template v-if="isGameOver">
+
+        <button type="button" class="btn btn-info btn-lg" id="new_game"
+                v-on:click="nextGame">
+                  New game
+        </button>
+
+        <hr />
+
+        <template v-if="hasPriorRound">
+          <div>
+            <h3>Game over - results:</h3>
+            <h2> Score: {{ score }}</h2>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Clue</th>
+                  <th>Answer</th>
+                  <th>Your guess</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="attempt in turns_taken">
+                  <tr v-bind:class="[attempt.correct ? 'success' : 'danger']">
+                    <td><span class="text-uppercase">{{ attempt.clue }}</span></td>
+                    <td>{{ attempt.term }}</td>
+                    <td>{{ attempt.guess || 'no answer'}}</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </template>
+
+      </template>
+      <template v-else>
+
+        <h2>Category: {{ turn.category }}</h2>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p class="lead text-uppercase">{{ turn.clue }}</p>
+          </div>
+        </div>
+
+        <div class="form-group" v-bind:class="[turn.correct ? 'has-success' : 'has-error']">
+          <input type="text" class="form-control input-lg" id="guess" placeholder="guess" autofocus
+                v-model="turn.guess" v-on:keyup="attempt" @keyup.enter="attempt">
+        </div>
+
+        <button type="button" class="btn btn-lg" id="next"
+                v-bind:class="[turn.correct ? 'btn-info' : 'btn-danger']"
+                v-on:click="nextRound">
+                  {{ nextBtnText }}
+        </button>
+
+        <button type="button" class="btn btn-lg btn-success" v-on:click="attempt">Try</button>
+
+      </template>
+
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="container ">
+      <p>Based on BBC's <a href="http://www.bbc.co.uk/programmes/b00lskhg">Only Connect's</a> final round.
+          Made by Kevin from <a href="http://xisfor.tech">x is for .tech</a></p>
+
+    </div>
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script type="text/javascript">
+
+
+var vm = new Vue({
+  el: "#app",
+  data: {
+    rounds: [],
+    round: 0,
+    category_count: 0,
+    category_max_length: 10,
+    score: 0,
+    time_remaining: 0,
+    round_time_length: 60,
+    turn: {
+      category: '',
+      term: '',
+      clue: '',
+      guess: '',
+      correct: false
+    },
+    turns_taken: []
+  },
+  methods: {
+    attempt: function (event) {
+
+      if ( testGuess(this.turn.term, this.turn.guess) ) {
+        this.turn.correct = true;
+        document.getElementById('next').focus();
+      } else {
+        this.turn.correct = false;
+        document.getElementById('guess').focus();
+      }
+
+    },
+
+    nextRound: function (event) {
+      if (this.turn.correct) this.score++;
+
+      // save the turn for review at the end
+      if (this.turn.clue) {
+        // clone that bad boy
+        this.turns_taken.push(JSON.parse(JSON.stringify(this.turn)));
+        // console.log('tt',this.turns_taken);
+      }
+
+      // clean up and set data for next turn
+      this.turn.category = this.rounds[this.round].category;
+      this.turn.term = this.rounds[this.round].term;
+      this.turn.clue = prepareClue(this.turn.term);
+      this.turn.guess = '';
+      this.turn.correct = false;
+
+      this.round++;
+
+      var guess_elem = document.getElementById('guess');
+      if (guess_elem) {
+        guess_elem.focus();
+      }
+    },
+
+    nextGame: function (event) {
+      var self = this;
+
+      // clear out the data
+      self.turns_taken = [];
+      self.score = 0;
+
+      // Game length in seconds
+      self.time_remaining = self.round_time_length;
+
+      // don't start the clock until we have the data loaded in
+      self.getGameData(function() {
+
+        var game_timer = setInterval(function() {
+          self.time_remaining--;
+          if (self.time_remaining <= 0) {
+            clearInterval(game_timer);
+            self.time_remaining = 0;
+          }
+        }, 1000);
+
+      });
+
+    },
+
+    prepGameRounds: function (data) {
+      var self = this;
+
+      // mix up the rounds.
+      data.rounds = _.shuffle(data.rounds);
+
+      // tidy up the format
+      var rerounds = [];
+      data.rounds.forEach(function (category) {
+
+        // mix up the terms, select first 10? self.category_max_length
+        category.terms = _.shuffle(category.terms);
+        category.terms = _.slice(category.terms, 0, self.category_max_length);
+
+        category.terms.forEach(function (term) {
+          rerounds.push({
+            category: category.category,
+            term: term
+          });
+        });
+      });
+
+      this.rounds = this.rounds.concat(rerounds);
+
+      // a term a second
+      if (this.rounds.length < this.round_time_length) {
+        this.getGameData();
+      } else {
+        // console.log('rounds', this.rounds.length, this.rounds);
+        this.nextRound();
+      }
+    },
+
+    getGameData: function (callback) {
+      var self = this;
+
+      var game_files = _.shuffle([
+        'animals',
+        // 'christmas',
+        'countries',
+        'food',
+        'media',
+        'musical_instruments',
+        'pp_version',
+        'stuff',
+        'rivers',
+        'sports',
+        // 'geography',
+        // 'video_games',
+        // 'words'
+      ]);
+
+      // console.log(game_files.pop())
+
+
+      $.ajax({
+        url: 'data/' + game_files.pop() + '.json',
+        method: 'GET'
+      })
+      .done(function (data) {
+
+
+        self.prepGameRounds(data);
+
+
+      })
+      .fail(function (error) {
+        console.log('data load error', error);
+      })
+      .always(function () {
+
+        if (callback) callback();
+      })
+      ;
+    }
+
+  },
+  computed: {
+    nextBtnText: function () {
+      return this.turn.correct ? 'Next' : 'Give up';
+    },
+    isGameOver: function () {
+      return this.time_remaining <= 0;
+    },
+    hasPriorRound: function () {
+      return this.turns_taken.length > 0;
+    }
+  },
+  ready: function () {
+    this.getGameData();
+  }
+});
+
+
+function testGuess (term, guess) {
+  return (cleanTerm(term) == cleanTerm(guess));
+}
+
+
+
+/* clue prep */
+
+// polyfill
+if (!String.prototype.splice) {
+  String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+  };
+}
+
+function prepareClue (str) {
+  str = str.toLowerCase();
+  str = removePunctuation(str);
+  str = removeVowels(str);
+  str = removeSpaces(str);
+  str = addSpaces(str);
+
+  return str;
+}
+
+function cleanTerm (str) {
+  str = str.toLowerCase();
+  str = removePunctuation(str);
+
+  return str;
+}
+
+// adds spaces in random positions
+function addSpaces (str) {
+  var spaces = Math.floor( str.length / 3 );
+
+  for (var i = 0; i < spaces; i++) {
+    str = str.splice(Math.floor(Math.random()*str.length), 0, ' ');
+  }
+
+  return str;
+}
+
+function removeSpaces (str) {
+  return str.replace(/[ ]/gi, '');
+}
+
+function removeVowels (str) {
+  return str.replace(/[aeiou]/gi, '');
+}
+
+function removePunctuation (str) {
+  return str.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g, '');
+}
+
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73899203-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>

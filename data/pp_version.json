@@ -1,0 +1,64 @@
+{
+  "rounds": [
+    {
+      "category": "Shades of Green",
+      "terms": [
+        "Forest",
+        "Sage",
+        "Grass",
+        "Seafoam",
+        "Lime",
+        "Olive",
+        "Chartreuse",
+        "Light",
+        "Pine",
+        "Sea"
+      ]
+    },
+    {
+      "category": "Gemstones",
+      "terms": [
+        "Emerald",
+        "Ruby",
+        "Diamond",
+        "Garnet",
+        "Pearl",
+        "Topaz",
+        "Sapphire",
+        "Amethyst",
+        "Aquamarine",
+        "Peridot"
+      ]
+    },
+    {
+      "category": "Popular Vacation Spots",
+      "terms": [
+        "Hawaii",
+        "Bahamas",
+        "Disney Land",
+        "Malibu",
+        "Las Vegas",
+        "London, England",
+        "Grand Canyon",
+        "New York City",
+        "Paris, France",
+        "Mexico"
+      ]
+    },
+    {
+      "category": "Types of Clothing",
+      "terms": [
+        "Hats",
+        "Shirts",
+        "Pants",
+        "Gloves",
+        "Shoes",
+        "Ties",
+        "Suits",
+        "Skirts",
+        "Dresses",
+        "Shorts"
+      ]
+    }
+  ]
+}

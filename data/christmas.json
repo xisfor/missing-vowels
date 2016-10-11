@@ -1,0 +1,394 @@
+{
+  "rounds": [
+    {
+      "category":"Stocking Stuffers",
+      "terms": [
+        "Candy/Candy Canes",
+        "Jewelry",
+        "Fingernail Polish",
+        "Toothbrushes",
+        "Match box Cars",
+        "Lip Balm / Lip Stick",
+        "Socks",
+        "Gift Cards",
+        "CD’s",
+        "Cash"
+      ]
+    },
+    {
+      "category":"Things found in Christmas Gift Baskets",
+      "terms": [
+        "Turkey",
+        "Ham",
+        "Sausages",
+        "Jam",
+        "Crackers",
+        "Nuts",
+        "Cookies",
+        "Cheese",
+        "Apples",
+        "Oranges"
+      ]
+    },
+    {
+      "category":"Christmas Cookie Cutter Shapes",
+      "terms": [
+        "Candy Cane",
+        "Bell",
+        "Star",
+        "Snowman",
+        "Wreath",
+        "Santa",
+        "Christmas Tree",
+        "Man",
+        "Angel",
+        "Stocking"
+      ]
+    },
+    {
+      "category":"Characters from Frank Capra’s Classic Holiday Film: It’s a Wonderful Life",
+      "terms": [
+        "George Bailey",
+        "Mary (Hatch) Bailey",
+        "Mr. Potter",
+        "Mr. Gower",
+        "Sam Wainwright",
+        "Uncle Billy",
+        "Harry Bailey",
+        "Violet",
+        "Clarence",
+        "Bert and Ernie"
+      ]
+    },
+    {
+      "category":"Things People do on Christmas Eve",
+      "terms": [
+        "Dress Up",
+        "Go to Church",
+        "Kiss under the Mistletoe",
+        "Travel",
+        "Last minute Shopping",
+        "Call Home",
+        "Watch It’s a Wonderful Life",
+        "Sing",
+        "Open Presents",
+        "Eat"
+      ]
+    },
+    {
+      "category":"Things People put on Christmas Trees",
+      "terms": [
+        "Stars",
+        "Angels",
+        "Lights",
+        "Ornaments",
+        "Popcorn Strings",
+        "Garland",
+        "Tinsle",
+        "Christmas Cards",
+        "Paper Snow Flakes",
+        "Candy Canes"
+      ]
+    },
+    {
+      "category":"Things on a Child’s Christmas Wish List",
+      "terms": [
+        "Legos",
+        "A puppy",
+        "Barbie Dolls",
+        "Play Station/Guitar Hero",
+        "Wii",
+        "Cell phone",
+        "Digital camera",
+        "Money",
+        "Trucks",
+        "Nerf Guns"
+      ]
+    },
+    {
+      "category":"Things People do to Stay Warm",
+      "terms": [
+        "Turn up the Thermostat",
+        "Cuddle",
+        "Light a fire",
+        "Blow on your hands/fingers",
+        "Exercise/move",
+        "Dress in Layers/put on a sweater or coat",
+        "Drink something hot",
+        "Put on a Snuggie",
+        "Take a hot bath/shower",
+        "Use a Heating Pad/ electric blanket"
+      ]
+    },
+    {
+      "category":"Things to do during/after a snowstorm",
+      "terms": [
+        "Go Sledding",
+        "Make a snowman",
+        "Shovel",
+        "Have a snowball fight",
+        "Make a snow fort",
+        "Make snow angels",
+        "Salt the sidewalks",
+        "Sleep in/ go back to bed",
+        "Bake Cookies",
+        "Listen to the radio for closings and cancelations"
+      ]
+    },
+    {
+      "category":"Pieces in a Nativity Set",
+      "terms": [
+        "Stable/crèche",
+        "Manger",
+        "Wiseman",
+        "Sheep",
+        "Camel",
+        "Angel",
+        "Shepherd",
+        "Mary",
+        "Joseph",
+        "Baby Jesus"
+      ]
+    },
+    {
+      "category":"Christmas Eve Program Calamities",
+      "terms": [
+        "Christmas Tree catches fire",
+        "Someone trips on the steps",
+        "Pre-schoolers fall asleep",
+        "Embarrassing typo in the bulletin",
+        "Little Girl lifts up her dress",
+        "Pastor is late or does not arrive",
+        "Organ won’t play",
+        "Crying baby disrupts service",
+        "Someone faints",
+        "They run out of Christmas Goodie Bags"
+      ]
+    },
+    {
+      "category":"Animals Often Pictured on Christmas Cards (Includes different kinds of birds)",
+      "terms": [
+        "Reindeer",
+        "Mice",
+        "Sheep",
+        "Cardinal",
+        "Camel",
+        "Partridge",
+        "Donkey",
+        "Dove",
+        "Polar Bear",
+        "Penguin"
+      ]
+    },
+    {
+      "category":"What People Do When Christmas is Over",
+      "terms": [
+        "Relax",
+        "Take down the tree",
+        "Put away lights/decorations",
+        "Shop the Sales",
+        "Play with their new toys",
+        "Return unwanted gifts",
+        "Send thank you cards",
+        "Catch up on sleep",
+        "Get photos developed",
+        "Make New Year’s Resolutions / go on a diet"
+      ]
+    },
+    {
+      "category":"Classic Christmas Movies and TV Specials",
+      "terms": [
+        "Miracle on 34th Dtreet",
+        "It’s a Wonderful Life",
+        "How the Grinch Stole Christmas",
+        "Charlie Brown Christmas",
+        "Rudolf the Red-Nosed Reindeer",
+        "The Little Drummer Boy",
+        "White Christmas",
+        "Santa Claus is Coming to Town",
+        "Home Alone",
+        "Frosty the Snowman"
+      ]
+    },
+    {
+      "category":"Christmas _________________",
+      "terms": [
+        "Christmas Card",
+        "Christmas Tree",
+        "Christmas Carol",
+        "Christmas List",
+        "Christmas Cookies",
+        "Christmas Present",
+        "Christmas Party",
+        "Christmas Eve",
+        "Christmas Angel",
+        "Christmas Day"
+      ]
+    },
+    {
+      "category":"What “My True Love Gave to Me…”",
+      "terms": [
+        "Two Turtle Doves",
+        "Three French Hens",
+        "Five Golden Rings",
+        "Six Geese a-laying",
+        "Seven Swans a-swimming",
+        "Eight Maids a-milking",
+        "Nine Ladies Dancing",
+        "Ten Lord a-leaping",
+        "Eleven Pipers Piping",
+        "Twelve drummers drumming"
+      ]
+    },
+    {
+      "category":"Characters in the Dickens’ Classic: A Christmas Carol",
+      "terms": [
+        "Ebenezer Scrooge",
+        "Bob Cratchit",
+        "Tiny Tim",
+        "Ghost of Christmas Past",
+        "Nephew Fred",
+        "Ghost of Christmas Present",
+        "Fannie Scrooge",
+        "Fezziwig",
+        "Ghost of Christmas Yet to Come",
+        "Belle"
+      ]
+    },
+    {
+      "category":"Things Associated with Santa",
+      "terms": [
+        "Rudolf",
+        "Ho! Ho! Ho!",
+        "Red Suit",
+        "His Sleigh",
+        "St. Nicolas",
+        "Elves",
+        "The North Pole",
+        "Chimney",
+        "Lump of coal",
+        "His List (naughty or nice)"
+      ]
+    },
+    {
+      "category":"Christmas Goodies",
+      "terms": [
+        "Fruit Cake",
+        "Sugar Cookies / Cut Out Cookies",
+        "Fudge",
+        "Gingerbread Men",
+        "Almond Bark",
+        "Peanut Brittle",
+        "Nuts",
+        "Spritz Cookies",
+        "Candy Canes",
+        "Popcorn Balls"
+      ]
+    },
+    {
+      "category":"Things People Write about in their Christmas Letters",
+      "terms": [
+        "New Job/Promotion",
+        "Vacations",
+        "Their Kids",
+        "The Weather",
+        "New Home/move",
+        "New Baby",
+        "New Grandchild",
+        "Weddings",
+        "School Activities",
+        "Their Pets"
+      ]
+    },
+    {
+      "category":"Snow__________",
+      "terms": [
+        "Snow Fort",
+        "Snow Plow",
+        "Snowbabies",
+        "Snow Day",
+        "Snow Shoes",
+        "Snow Shovel",
+        "Snow Cone",
+        "Snowmobile",
+        "Snow Board",
+        "Snowball Fight"
+      ]
+    },
+    {
+      "category":"Christmas Baby Names",
+      "terms": [
+        "Nowelle",
+        "Jesus",
+        "Holly",
+        "Carol",
+        "Angel",
+        "Ivy",
+        "Gabrielle",
+        "Joseph",
+        "Claus",
+        "Mary"
+      ]
+    },
+    {
+      "category":"A Few of Fraulein Maria’s Favorite Things",
+      "terms": [
+        "Raindrops on roses",
+        "Bright Copper Kettles",
+        "Brown paper packages tied up with strings",
+        "Girls in white dresses with blue satin sashes",
+        "Snowflakes that stay on my nose and eyelashes",
+        "Silver white winters that melt into springs",
+        "Whiskers on kittens",
+        "Sleigh bells",
+        "Wild geese that fly with the moon on their wings",
+        "Schnitzel with noodles"
+      ]
+    },
+    {
+      "category":"Reindeer",
+      "terms": [
+        "Dasher",
+        "Dancer",
+        "Prancer",
+        "Vixen",
+        "Comet",
+        "Cupid",
+        "Donner",
+        "Blitzen",
+        "Rudolf",
+        "Clarice"
+      ]
+    },
+    {
+      "category":"Peanuts Characters",
+      "terms": [
+        "Charlie Brown",
+        "Snoopy",
+        "Lucy Van Pelt",
+        "Linus Van Pelt",
+        "Sally",
+        "Schroeder",
+        "Peppermint Patty",
+        "Marcie",
+        "Woodstock",
+        "Pigpen"
+      ]
+    },
+    {
+      "category":"New Year’s Resolutions",
+      "terms": [
+        "Quit Smoking",
+        "Exercise / get fit",
+        "Diet / lose weight",
+        "Spend more time with family",
+        "Save money",
+        "Manage Debt / pay off credit cards",
+        "Stop biting nails",
+        "Take a vacation",
+        "Get a better job",
+        "Be more organized"
+      ]
+    }
+  ]
+}

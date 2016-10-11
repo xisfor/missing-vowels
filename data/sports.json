@@ -1,0 +1,19 @@
+{
+  "rounds": [
+    {
+      "category": "Famous NBA Stars",
+      "terms": [
+        "Wilt Chamberlain",
+        "Koby Bryant",
+        "Michael Jordan",
+        "LeBron James",
+        "Dennis Rodman",
+        "Karl Malone",
+        "Shaquille ONeal",
+        "Magic Johnson",
+        "Kareem Abdul-Jabbar",
+        "John Stockton"
+      ]
+    }
+  ]
+}
