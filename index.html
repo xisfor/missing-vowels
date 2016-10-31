@@ -94,7 +94,10 @@
 
         <button type="button" class="btn btn-lg btn-success" v-on:click="attempt">Try</button>
 
+        <a class="btn btn-lg" id="speech" v-on:click="listenUp">Say it!</a>
       </template>
+
+      <div class="output"></div>
 
     </div>
   </div>
@@ -120,6 +123,8 @@ var vm = new Vue({
     round: 0,
     category_count: 0,
     category_max_length: 10,
+    grammar: '',
+    recognition: null,
     score: 0,
     time_remaining: 0,
     round_time_length: 60,
@@ -223,6 +228,11 @@ var vm = new Vue({
       if (this.rounds.length < this.round_time_length) {
         this.getGameData();
       } else {
+
+        self.setGrammars();
+
+        self.runSpeechRecognition();
+
         // console.log('rounds', this.rounds.length, this.rounds);
         this.nextRound();
       }
@@ -259,7 +269,6 @@ var vm = new Vue({
 
         self.prepGameRounds(data);
 
-
       })
       .fail(function (error) {
         console.log('data load error', error);
@@ -269,7 +278,90 @@ var vm = new Vue({
         if (callback) callback();
       })
       ;
+    },
+
+    setGrammars: function () {
+
+      var terms = this.rounds.map(function (round) { return round.term; });
+      this.grammar = '#JSGF V1.0; grammar gameGrammar; public <gameTerms> = ' + terms.join(' | ') + ' ;';
+
+      // console.log(grammar)
+    },
+
+    runSpeechRecognition: function () {
+      var self = this;
+
+      console.log('start')
+
+      var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+      var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+      var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+
+      this.recognition = new SpeechRecognition();
+      var speechRecognitionList = new SpeechGrammarList();
+      speechRecognitionList.addFromString(this.grammar, 1);
+      this.recognition.grammars = speechRecognitionList;
+
+      //recognition.continuous = false;
+
+      this.recognition.lang = 'en-US';
+      this.recognition.interimResults = false;
+      this.recognition.maxAlternatives = 1;
+
+      var diagnostic = document.querySelector('.output');
+
+
+      // document.body.onclick = function() {
+      //   this.recognition.start();
+      //   console.log('Ready to receive a color command.');
+      // };
+
+      this.recognition.onresult = function(event) {
+        console.log('result');
+
+        // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+        // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+        // It has a getter so it can be accessed like an array
+        // The [last] returns the SpeechRecognitionResult at the last position.
+        // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+        // These also have getters so they can be accessed like arrays.
+        // The [0] returns the SpeechRecognitionAlternative at position 0.
+        // We then return the transcript property of the SpeechRecognitionAlternative object
+
+        var last = event.results.length - 1;
+        var word = event.results[last][0].transcript;
+
+        diagnostic.textContent = 'Result received: ' + word + '.';
+        console.log(word);
+        console.log('Confidence: ' + event.results[0][0].confidence);
+
+        self.turn.guess = word;
+        self.attempt();
+      };
+
+      this.recognition.onspeechend = function() {
+        console.log('speech end');
+        self.recognition.stop();
+      };
+
+      this.recognition.onnomatch = function(event) {
+        console.log('no match');
+        diagnostic.textContent = "I didn't recognise that word.";
+      };
+
+      this.recognition.onerror = function(event) {
+        console.log('error', event)
+        diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+      };
+
+
+    },
+
+    listenUp: function () {
+      this.recognition.start();
+      console.log('I\'m listening');
     }
+
 
   },
   computed: {
@@ -281,6 +373,8 @@ var vm = new Vue({
     },
     hasPriorRound: function () {
       return this.turns_taken.length > 0;
+    },
+    grammars: function () {
     }
   },
   ready: function () {
