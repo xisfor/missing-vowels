@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="icon" type="image/png" href="/assets/xisfor-dark-square-rounded-120.png" />
   <style type="text/css">
+  .brand {
+    font-size: 24px;
+  }
+  .category {
+    font-size: 16px;
+  }
+  .clue {
+    padding: 15px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
   .btn, .input-lg {
     border-radius: 2px;
   }
@@ -23,6 +34,18 @@
      width: 100%;
      background-color: #fff;
   }
+  .pulse {
+    animation-name: pulse_animation;
+    animation-duration: 300ms;
+    transform-origin: 70% 70%;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+  }
+  @keyframes pulse_animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
   </style>
 </head>
 <body>
@@ -30,17 +53,19 @@
   <div class="container main">
     <div id="app">
       <p class="pull-right">time: {{ time_remaining }} - score: {{ score }}<p>
-      <h1>Missing vowels</h1>
-      <p>{{ round_time_length }} seconds to identify as many words or phrases with their vowels removed.</p>
-
-      <hr />
+      <h1 class="brand">Missing vowels</h1>
 
       <template v-if="isGameOver">
+        <p>{{ round_time_length }} seconds to identify as many words or phrases with their vowels removed.</p>
+
+        <hr />
 
         <button type="button" class="btn btn-info btn-lg" id="new_game"
                 v-on:click="nextGame">
                   New game
         </button>
+
+        <!-- <button type="button" v-on:click="tester">Tester</button> -->
 
         <hr />
 
@@ -54,7 +79,7 @@
                 <tr>
                   <th>Clue</th>
                   <th>Answer</th>
-                  <th>Your guess</th>
+                  <!-- <th>Your guess</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -62,7 +87,7 @@
                   <tr v-bind:class="[attempt.correct ? 'success' : 'danger']">
                     <td><span class="text-uppercase">{{ attempt.clue }}</span></td>
                     <td>{{ attempt.term }}</td>
-                    <td>{{ attempt.guess || 'no answer'}}</td>
+                    <!-- <td>{{ attempt.guess || 'no answer'}}</td> -->
                   </tr>
                 </template>
               </tbody>
@@ -73,29 +98,36 @@
       </template>
       <template v-else>
 
-        <h2>Category: {{ turn.category }}</h2>
+        <h2 class="category">{{ turn.category }}</h2>
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <p class="lead text-uppercase">{{ turn.clue }}</p>
+        <p class="clue text-uppercase"
+           v-bind:class="[turn.correct ? 'bg-success' : 'bg-warning', turn.correct ? 'pulse' : '']">
+            {{ turn.clue }}
+
+              <a class="btn btn-sm pull-right" id="next"
+                      v-bind:class="[turn.correct ? 'btn-info' : 'btn-danger']"
+                      v-on:click="nextRound">
+                        {{ nextBtnText }}
+              </a>
+
+        </p>
+
+        <div class="row">
+          <div class="col-xs-9">
+            <div class="form-group" v-bind:class="[turn.correct ? 'has-success' : 'has-error']">
+              <input type="text" class="form-control input-lg" id="guess" placeholder="guess" autofocus
+                    v-model="turn.guess" v-on:keyup="attempt" @keyup.enter="attempt">
+            </div>
+          </div>
+
+          <div class="col-xs-3">
+            <div class="pull-right">
+
+
+              <voice-recogniser></voice-recogniser>
+            </div>
           </div>
         </div>
-
-        <div class="form-group" v-bind:class="[turn.correct ? 'has-success' : 'has-error']">
-          <input type="text" class="form-control input-lg" id="guess" placeholder="guess" autofocus
-                v-model="turn.guess" v-on:keyup="attempt" @keyup.enter="attempt">
-        </div>
-
-        <button type="button" class="btn btn-lg" id="next"
-                v-bind:class="[turn.correct ? 'btn-info' : 'btn-danger']"
-                v-on:click="nextRound">
-                  {{ nextBtnText }}
-        </button>
-
-        <button type="button" class="btn btn-lg btn-success" v-on:click="attempt">Try</button>
-
-        <a class="btn btn-lg" id="speech" v-on:click="listenUp">Say it!</a>
-
       </template>
 
       <div class="output"></div>
@@ -114,6 +146,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script src="clue_utils.js"></script>
+  <script src="voice_component.js"></script>
   <script src="game.js"></script>
 
 

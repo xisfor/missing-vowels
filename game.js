@@ -5,8 +5,6 @@ var vm = new Vue({
     round: 0,
     category_count: 0,
     category_max_length: 10,
-    grammar: '',
-    recognition: null,
     score: 0,
     time_remaining: 0,
     round_time_length: 60,
@@ -21,19 +19,17 @@ var vm = new Vue({
   },
   methods: {
     attempt: function (event) {
-
       if ( testGuess(this.turn.term, this.turn.guess) ) {
         this.turn.correct = true;
-        document.getElementById('next').focus();
+        // document.getElementById('next').focus();
+        setTimeout(this.nextRound, 900);
       } else {
         this.turn.correct = false;
         document.getElementById('guess').focus();
       }
-
     },
 
     nextRound: function (event) {
-      this.recognition.stop();
 
       if (this.turn.correct) this.score++;
 
@@ -112,13 +108,6 @@ var vm = new Vue({
       if (this.rounds.length < this.round_time_length) {
         this.getGameData();
       } else {
-
-        if (!self.recognition) {
-          setGrammars();
-          runSpeechRecognition();
-        }
-
-        // console.log('rounds', this.rounds.length, this.rounds);
         this.nextRound();
       }
     },
@@ -142,18 +131,12 @@ var vm = new Vue({
         // 'words'
       ]);
 
-      // console.log(game_files.pop())
-
-
       $.ajax({
         url: 'data/' + game_files.pop() + '.json',
         method: 'GET'
       })
       .done(function (data) {
-
-
         self.prepGameRounds(data);
-
       })
       .fail(function (error) {
         console.log('data load error', error);
@@ -166,17 +149,10 @@ var vm = new Vue({
     },
 
 
-
-    listenUp: function () {
-      this.recognition.start();
-      console.log('I\'m listening');
-    }
-
-
   },
   computed: {
     nextBtnText: function () {
-      return this.turn.correct ? 'Next' : 'Give up';
+      return this.turn.correct ? 'Next' : 'Skip';
     },
     isGameOver: function () {
       return this.time_remaining <= 0;
@@ -184,150 +160,9 @@ var vm = new Vue({
     hasPriorRound: function () {
       return this.turns_taken.length > 0;
     },
-    grammars: function () {
-    }
   },
   ready: function () {
     this.getGameData();
   }
 });
 
-//----
-
-
-
-//----
-
-function setGrammars () {
-  var terms = vm.rounds.map(function (round) { return round.term; });
-  vm.grammar = '#JSGF V1.0; grammar gameGrammar; public <gameTerms> = ' + terms.join(' | ') + ' ;';
-  console.log(vm.grammar);
-}
-
-function runSpeechRecognition () {
-  var self = vm;
-
-  console.log('start');
-
-  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-  var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-
-  self.recognition = new SpeechRecognition();
-  var speechRecognitionList = new SpeechGrammarList();
-  speechRecognitionList.addFromString(self.grammar, 1);
-  self.recognition.grammars = speechRecognitionList;
-
-  //recognition.continuous = false;
-
-  self.recognition.lang = 'en-GB';
-  self.recognition.interimResults = false;
-  self.recognition.maxAlternatives = 1;
-
-  var diagnostic = document.querySelector('.output');
-
-
-  // document.body.onclick = function() {
-  //   self.recognition.start();
-  //   console.log('Ready to receive a color command.');
-  // };
-
-  self.recognition.onresult = function(event) {
-    console.log('result');
-
-    // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-    // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-    // It has a getter so it can be accessed like an array
-    // The [last] returns the SpeechRecognitionResult at the last position.
-    // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-    // These also have getters so they can be accessed like arrays.
-    // The [0] returns the SpeechRecognitionAlternative at position 0.
-    // We then return the transcript property of the SpeechRecognitionAlternative object
-
-    var last = event.results.length - 1;
-    var word = event.results[last][0].transcript;
-
-    diagnostic.textContent = 'Result received: ' + word + '.';
-    console.log(word);
-    console.log('Confidence: ' + event.results[0][0].confidence);
-
-    self.turn.guess = word;
-    self.attempt();
-  };
-
-  self.recognition.onspeechend = function() {
-    console.log('speech end');
-    self.recognition.stop();
-  };
-
-  self.recognition.onnomatch = function(event) {
-    console.log('no match');
-    diagnostic.textContent = "I didn't recognise that word.";
-  };
-
-  self.recognition.onerror = function(event) {
-    console.log('error', event);
-    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-  };
-
-}
-
-
-//----
-
-
-
-function testGuess (term, guess) {
-  return (cleanTerm(term) == cleanTerm(guess));
-}
-
-
-
-/* clue prep */
-
-// polyfill
-if (!String.prototype.splice) {
-  String.prototype.splice = function(idx, rem, str) {
-    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
-  };
-}
-
-function prepareClue (str) {
-  str = str.toLowerCase();
-  str = removePunctuation(str);
-  str = removeVowels(str);
-  str = removeSpaces(str);
-  str = addSpaces(str);
-
-  return str;
-}
-
-function cleanTerm (str) {
-  str = str.toLowerCase();
-  str = removePunctuation(str);
-
-  return str;
-}
-
-// adds spaces in random positions
-function addSpaces (str) {
-  var spaces = Math.floor( str.length / 3 );
-
-  for (var i = 0; i < spaces; i++) {
-    str = str.splice(Math.floor(Math.random()*str.length), 0, ' ');
-  }
-
-  return str;
-}
-
-function removeSpaces (str) {
-  return str.replace(/[ ]/gi, '');
-}
-
-function removeVowels (str) {
-  return str.replace(/[aeiou]/gi, '');
-}
-
-function removePunctuation (str) {
-  return str.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g, '');
-}
