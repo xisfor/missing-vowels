@@ -4,11 +4,20 @@ var voice_data = {
   grammar: '',
   is_talker: false,
   recognition: new SpeechRecognition(),
+  listening: false
 };
 
 
 Vue.component('voice-recogniser', {
-  template: '<a class="btn btn-lg btn-primary" id="speech" v-on:click="listenUp">Say it!</a>',
+  template:
+    '<div>' +
+      '<template v-if="listening">' +
+        '<div class="btn-listening">{{listeningSymbol}}</div>' +
+      '</template>' +
+      '<template v-else>' +
+        '<a class="btn btn-lg btn-primary" id="speech" v-on:click="listenUp">{{listeningSymbol}}</a>' +
+      '</template>' +
+    '</div>',
   props: {
     terms: null
   },
@@ -18,7 +27,13 @@ Vue.component('voice-recogniser', {
   methods: {
     listenUp: function () {
       voice_data.recognition.start();
-      console.log('I\'m listening');
+      voice_data.listening = true;
+      // console.log('I\'m listening');
+    }
+  },
+  computed: {
+    listeningSymbol: function () {
+      return this.listening ? '👂📢' : 'Say it!';
     }
   },
   ready: function () {
@@ -87,15 +102,18 @@ voice_data.recognition.onresult = function (event) {
 voice_data.recognition.onspeechend = function () {
   // console.log('speech end');
   voice_data.recognition.stop();
+  voice_data.listening = false;
 };
 
 voice_data.recognition.onnomatch = function (event) {
   // console.log('no match');
+  voice_data.listening = false;
   diagnostic.textContent = "I didn't recognise that word.";
 };
 
 voice_data.recognition.onerror = function (event) {
   console.log('error', event);
+  voice_data.listening = false;
   // diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 };
 

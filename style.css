@@ -1,0 +1,97 @@
+/*
+  990BB2;
+  FFCC43;
+  DE29FF
+  0DCC91
+  14B282
+   */
+.btn-primary,
+.btn-primary:focus
+.btn-primary:active {
+  background-color: #990BB2;
+  border-color: #990BB2;
+}
+.btn-primary:hover {
+  background-color: #DE29FF;
+}
+.btn-listening {
+  padding: 8px 16px;
+  font-size: 22px;
+  line-height: 1.3333333;
+}
+.bg-warning {
+  background-color: #FFCC43;
+}
+.bg-success {
+  background-color: #14B282;
+}
+body {
+  background: url(ignasi_pattern_s_g.png);
+  background-color: #0DCC91;
+}
+hr {
+  border-top-color: #cfcfcf;
+}
+.brand {
+  font-size: 24px;
+}
+.btn-new-game {
+  width: 100%;
+  background-color: #990BB2;
+  border-color: #990BB2;
+}
+.btn-new-game:hover,
+.btn-new-game:focus,
+.btn-new-game:active,
+.btn-new-game:active:focus {
+  background-color: #DE29FF;
+}
+.text-intense {
+  color: #d9534f;
+  font-weight: bold;
+}
+.timer {
+  /*display: inline-block;*/
+}
+.attempt_result {
+  position: relative;
+}
+.attemptimal {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  font-size: 2em;
+}
+.category {
+  font-size: 16px;
+}
+.clue {
+  padding: 15px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.btn, .input-lg {
+  border-radius: 2px;
+}
+.main {
+  margin-bottom: 50px;
+}
+.site-footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background-color: #FFCC43;
+}
+.pulse {
+  animation-name: pulse_animation;
+  animation-duration: 300ms;
+  transform-origin: 70% 70%;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+@keyframes pulse_animation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}

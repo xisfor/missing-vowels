@@ -160,6 +160,12 @@ var vm = new Vue({
     hasPriorRound: function () {
       return this.turns_taken.length > 0;
     },
+    timerIntensity: function () {
+      if (this.time_remaining > 0 && this.time_remaining < 11) {
+        return 'text-intense';
+      }
+      return 'meh';
+    }
   },
   ready: function () {
     this.getGameData();

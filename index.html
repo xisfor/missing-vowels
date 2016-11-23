@@ -7,66 +7,27 @@
 
   <title>Missing Vowels</title>
 
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
   <link rel="icon" type="image/png" href="/assets/xisfor-dark-square-rounded-120.png" />
-  <style type="text/css">
-  .brand {
-    font-size: 24px;
-  }
-  .category {
-    font-size: 16px;
-  }
-  .clue {
-    padding: 15px;
-    font-size: 18px;
-    letter-spacing: 1px;
-  }
-  .btn, .input-lg {
-    border-radius: 2px;
-  }
-  .main {
-    margin-bottom: 50px;
-  }
-  .site-footer {
-     position: fixed;
-     left: 0px;
-     bottom: 0px;
-     width: 100%;
-     background-color: #fff;
-  }
-  .pulse {
-    animation-name: pulse_animation;
-    animation-duration: 300ms;
-    transform-origin: 70% 70%;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-  }
-  @keyframes pulse_animation {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-  }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="container main">
     <div id="app">
-      <p class="pull-right">time: {{ time_remaining }} - score: {{ score }}<p>
-      <h1 class="brand">Missing vowels</h1>
+      <p class="pull-right">
+        time: <span class="timer" v-bind:class="timerIntensity">{{ time_remaining }}</span> -
+        score: {{ score }}<p>
+      <h1 class="brand">Missing vowels 👾 📢</h1>
 
       <template v-if="isGameOver">
-        <p>{{ round_time_length }} seconds to identify as many words or phrases with their vowels removed.</p>
+        <p>{{ round_time_length }} seconds to guess words or phrases with their vowels removed.</p>
 
         <hr />
-
-        <button type="button" class="btn btn-info btn-lg" id="new_game"
+        <button type="button" class="btn btn-info btn-lg btn-new-game" id="new_game"
                 v-on:click="nextGame">
                   New game
         </button>
-
-        <!-- <button type="button" v-on:click="tester">Tester</button> -->
-
         <hr />
 
         <template v-if="hasPriorRound">
@@ -79,15 +40,15 @@
                 <tr>
                   <th>Clue</th>
                   <th>Answer</th>
-                  <!-- <th>Your guess</th> -->
                 </tr>
               </thead>
               <tbody>
                 <template v-for="attempt in turns_taken">
-                  <tr v-bind:class="[attempt.correct ? 'success' : 'danger']">
+                  <tr v-bind:class="[attempt.correct ? 'bg-success' : 'bg-warning']">
                     <td><span class="text-uppercase">{{ attempt.clue }}</span></td>
-                    <td>{{ attempt.term }}</td>
-                    <!-- <td>{{ attempt.guess || 'no answer'}}</td> -->
+                    <td class="attempt_result"> {{ attempt.term }}
+                      <span class="attemptimal">{{ attempt.correct ? '🦄' : '😿' }}</span>
+                    </td>
                   </tr>
                 </template>
               </tbody>
@@ -122,11 +83,10 @@
 
           <div class="col-xs-3">
             <div class="pull-right">
-
-
               <voice-recogniser></voice-recogniser>
             </div>
           </div>
+
         </div>
       </template>
 
@@ -137,15 +97,16 @@
 
   <div class="site-footer">
     <div class="container ">
-      <p>Based on BBC's <a href="http://www.bbc.co.uk/programmes/b00lskhg">Only Connect's</a> final round.
-          Made by Kevin from <a href="http://xisfor.tech">x is for .tech</a></p>
+      <p>Based on BBC <a href="http://www.bbc.co.uk/programmes/b00lskhg">Only Connect's</a> last round.
+          Made by Kevin @ <a href="http://xisfor.tech">x is for .tech</a></p>
 
     </div>
   </div>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script src="//unpkg.com/jquery@3/dist/jquery.min.js"></script>
+  <script src="//unpkg.com/vue@2/dist/vue.min.js"></script>
+  <script src="//unpkg.com/lodash@4/lodash.min.js"></script>
+
   <script src="clue_utils.js"></script>
   <script src="voice_component.js"></script>
   <script src="game.js"></script>
